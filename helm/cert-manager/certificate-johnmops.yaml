@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: johnmops-com
+  namespace: cert-manager
+spec:
+  secretName: johnmops-tls
+  dnsNames:
+  - www.johnmops.com
+  issuerRef:
+    name: letsencrypt-staging
+    kind: Issuer

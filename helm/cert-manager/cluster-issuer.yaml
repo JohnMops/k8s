@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: cert-manager
+spec:
+  acme:
+    email: evgenibir@outlook.com
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: mops-account-key
+    solvers:
+    - http01:
+        ingress:
+          name: nginx

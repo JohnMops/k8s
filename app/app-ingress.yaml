@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-app
+  namespace: app
+  annotations:
+    nginx.ingress.kubernetes.io/class: nginx
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  tls:
+  - hosts:
+    - www.johnmops.com
+    secretName: new-tls
+  rules:
+  - host: www.johnmops.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-app
+          servicePort: 80
+
